@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>//--- NAS ---//</title>
+    <style>
+        body {
+            background-color: aquamarine;
+        }
+
+        .divCabecera {
+
+            width: 20%;
+            font-size: large;
+        }
+
+        input[type=file] {
+            width: 350px;
+            max-width: 100%;
+            color: #444;
+            padding: 5px;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #555;
+        }
+
+        input[type=file]::file-selector-button {
+            margin-right: 20px;
+            border: none;
+            background: #084cdf;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+        }
+
+        input[type=file]::file-selector-button:hover {
+            background: #0d45a5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <form action="/nas/upload" method="post" enctype="multipart/form-data">
+            <label for="fotos">Elige varias fotos para subir:</label>
+            <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
+            <input type="hidden" name="user" value="{{ user.id }}">
+            <input type="submit" value="Subir fotos">
+         </form>
+         
+           
+
+    </div>
+</body>
+
+</html>
