@@ -37,7 +37,7 @@ def login_user(request, username, password):
 class SignUpView(FormView):
    template_name = 'signup.html'
    form_class = UserCreationForm
-   success_url = reverse_lazy('index')
+   success_url = reverse_lazy('index.html')
 
    def form_valid(self, form):
        user = form.save()

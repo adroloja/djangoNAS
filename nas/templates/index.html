@@ -47,6 +47,7 @@
 
     <div>
         <form action="/nas/upload" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <label for="fotos">Elige varias fotos para subir:</label>
             <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
             <input type="hidden" name="user" value="{{ user.id }}">
