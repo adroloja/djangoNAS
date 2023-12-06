@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>//--- NAS ---//</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -39,20 +39,38 @@
             </div>
         </div>
     </header>
-    <!-- templates/registration/signup.html -->
+    <div class="container" style="margin: 5%;">
+        <a href="{% url 'descargar_todo' %}" class="btn btn-primary" style="width: 90%;">Descargar todo</a>
 
-<div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
-        {% block title %}Sign Up{% endblock %}
-        {% block content %}
-        <h2>Registrarse</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-primary" type="submit">Registrarse</button>
-        </form>
-        {% endblock %}
-</div>
+    </div>
+    <ul class="list-group list-group-horizontal-xxl">
+        {% for item in page_obj %}
+        <li class="list-group-item">
+            <img style="margin-left: 15%;" src="{{ item.image_url }}" alt="{{ item.image.name }}" width="100px"
+                height="100px">
+            <button class="btn btn-success" style="float: right; margin-top: 30px;">
+                <a href="{% url 'descargar_imagen' item.id %}" style="color: white;">Descargar</a>
+            </button>
+        </li>
+        {% endfor %}
+        <div class="pagination" style="background-color: white;">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1" class="btn btn-primary">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">previous</a>
+                {% endif %}
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-primary">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
 
+
+    </ul>
 </body>
 
 </html>
